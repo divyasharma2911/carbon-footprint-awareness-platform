@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Awareness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9c0-1.1-.2-2.2-.6-3.2-.4-.9-1.2-1.4-2.1-1.4-1.3 0-2.3 1-2.3 2.3 0 .7.3 1.4.8 1.8-1.1 1.2-2.6 2-4.2 2-3.3 0-6-2.7-6-6 0-2.5 1.6-4.7 4-5.6 1-.4 1.6-1.4 1.5-2.4V3Z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">Carbon Compass</div>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item active" data-target="dashboard-section">
+                    <svg viewBox="0 0 24 24"><path d="M4 13.5V20h6v-6.5H4Zm10 0V20h6v-6.5h-6ZM4 4v6.5h6V4H4Zm10 0v6.5h6V4h-6Z"/></svg>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-target="calculator-section">
+                    <svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 4h12V5H6v2Zm2 4h2V9H8v2Zm4 0h2V9h-2v2Zm4 0h2V9h-2v2ZM8 15h2v-2H8v2Zm4 0h2v-2h-2v2Zm4 0h2v-2h-2v2Z"/></svg>
+                    <span>Calculator</span>
+                </li>
+                <li class="nav-item" data-target="actions-section">
+                    <svg viewBox="0 0 24 24"><path d="M12 3 4 7v6c0 5 3.5 8.7 8 9 4.5-.3 8-4 8-9V7l-8-4Zm-1 13-4-4 1.4-1.4L11 13.2l4.6-4.6L17 10l-6 6Z"/></svg>
+                    <span>Action Plan</span>
+                </li>
+                <li class="nav-item" data-target="quiz-section">
+                    <svg viewBox="0 0 24 24"><path d="M12 18h.01M9.1 9a3 3 0 1 1 4.7 2.5c-.8.5-1.3 1.2-1.3 2v.5M4 4h16v16H4V4Z"/></svg>
+                    <span>Quiz</span>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                Small actions. Clear feedback. Measurable change.
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section id="dashboard-section" class="content-section active">
+                <div class="header-section glass-card">
+                    <h1>Understand your footprint, then shrink it.</h1>
+                    <p>Track monthly emissions across home, travel, and food. Get personalized tips that focus on simple actions with the highest impact.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <article class="glass-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24"><path d="M12 3a8.5 8.5 0 1 0 8.5 8.5"/></svg>
+                            Your Carbon Snapshot
+                        </div>
+                        <div class="carbon-ring-container">
+                            <svg class="svg-ring" width="260" height="260" viewBox="0 0 260 260" aria-label="Carbon footprint progress">
+                                <defs>
+                                    <linearGradient id="emerald-cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#10b981" />
+                                        <stop offset="100%" stop-color="#06b6d4" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="ring-bg" cx="130" cy="130" r="96"></circle>
+                                <circle id="ring-progress" class="ring-progress" cx="130" cy="130" r="96" stroke-dasharray="603.19" stroke-dashoffset="603.19"></circle>
+                            </svg>
+                            <div class="ring-text-container">
+                                <div class="carbon-value" id="total-footprint">0</div>
+                                <div class="carbon-unit">kg CO2e / month</div>
+                                <div class="carbon-status-badge" id="carbon-status">Track your habits</div>
+                            </div>
+                        </div>
+                        <div class="comparison-list" style="margin-top: 0.5rem;">
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Home energy</span><span class="comparison-val" id="home-value">0 kg</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill user" id="home-bar"></div></div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Transport</span><span class="comparison-val" id="travel-value">0 kg</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill global" id="travel-bar"></div></div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Food & waste</span><span class="comparison-val" id="food-value">0 kg</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill target" id="food-bar"></div></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="glass-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24"><path d="M4 19h16M6 16l3-5 4 3 5-8"/></svg>
+                            Impact Compared to Benchmarks
+                        </div>
+                        <div class="comparison-list">
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Your footprint</span><span class="comparison-val" id="benchmark-user">0</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill user" id="benchmark-user-bar"></div><div class="comparison-indicator" id="target-marker"></div></div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Global average</span><span class="comparison-val" id="benchmark-global">0</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill global" id="benchmark-global-bar"></div></div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Your target</span><span class="comparison-val" id="benchmark-target">0</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill target" id="benchmark-target-bar"></div></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.92rem;" id="dashboard-insight">
+                            Start adjusting the sliders to see how everyday choices change your footprint.
+                        </div>
+                    </article>
+                </div>
+
+                <div class="category-charts-section">
+                    <article class="glass-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24"><path d="M4 20h16M7 16V8m5 8V5m5 11v-7"/></svg>
+                            Monthly Emissions Mix
+                        </div>
+                        <div class="chart-wrapper">
+                            <svg id="mix-chart" viewBox="0 0 560 250" width="100%" height="100%" role="img" aria-label="Monthly emissions mix">
+                                <rect x="0" y="0" width="560" height="250" rx="24" fill="rgba(255,255,255,0.02)"></rect>
+                                <g id="mix-bars"></g>
+                            </svg>
+                        </div>
+                    </article>
+
+                    <article class="glass-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg>
+                            Personalized Insights
+                        </div>
+                        <div class="active-habits-panel" id="insights-list"></div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="calculator-section" class="content-section">
+                <div class="header-section glass-card">
+                    <h1>Calculator</h1>
+                    <p>Estimate the biggest sources of your monthly footprint and see the impact of cleaner choices in real time.</p>
+                </div>
+
+                <div class="calculator-container">
+                    <nav class="calc-nav">
+                        <div class="calc-tab active" data-panel="home-panel">
+                            <div class="calc-icon">1</div>
+                            <div class="calc-tab-info"><h4>Home</h4><p>Energy, heating, and electricity</p></div>
+                        </div>
+                        <div class="calc-tab" data-panel="travel-panel">
+                            <div class="calc-icon">2</div>
+                            <div class="calc-tab-info"><h4>Travel</h4><p>Car use and public transit</p></div>
+                        </div>
+                        <div class="calc-tab" data-panel="food-panel">
+                            <div class="calc-icon">3</div>
+                            <div class="calc-tab-info"><h4>Food</h4><p>Diet choices and waste</p></div>
+                        </div>
+                    </nav>
+
+                    <div class="glass-card">
+                        <div id="home-panel" class="calc-panel active">
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <label class="form-label" for="home-energy">Monthly electricity usage</label>
+                                    <span class="form-value-badge"><span id="home-energy-value">350</span> kWh</span>
+                                </div>
+                                <input class="slider-input" id="home-energy" type="range" min="100" max="900" value="350">
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-row">
+                                    <div class="switch-label-col">
+                                        <div class="form-label">Use renewable electricity</div>
+                                        <div class="switch-subtext">A lower-carbon tariff reduces your home footprint.</div>
+                                    </div>
+                                    <label class="switch"><input id="renewable-switch" type="checkbox"><span class="slider-toggle"></span></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <div class="form-label">Heating season intensity</div>
+                                    <span class="form-value-badge" id="heat-intensity-label">Moderate</span>
+                                </div>
+                                <select class="select-input" id="heat-intensity">
+                                    <option value="0.85">Mild</option>
+                                    <option value="1" selected>Moderate</option>
+                                    <option value="1.25">Cold</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="travel-panel" class="calc-panel">
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <label class="form-label" for="car-distance">Weekly car travel</label>
+                                    <span class="form-value-badge"><span id="car-distance-value">120</span> km</span>
+                                </div>
+                                <input class="slider-input" id="car-distance" type="range" min="0" max="600" value="120">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <div class="form-label">Public transport days</div>
+                                    <span class="form-value-badge" id="transit-days-value">3 days</span>
+                                </div>
+                                <input class="slider-input" id="transit-days" type="range" min="0" max="7" value="3">
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-row">
+                                    <div class="switch-label-col">
+                                        <div class="form-label">Commuting from home</div>
+                                        <div class="switch-subtext">Fewer trips means less fuel and less congestion.</div>
+                                    </div>
+                                    <label class="switch"><input id="remote-switch" type="checkbox" checked><span class="slider-toggle"></span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="food-panel" class="calc-panel">
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <div class="form-label">Diet pattern</div>
+                                    <span class="form-value-badge" id="diet-label">Balanced</span>
+                                </div>
+                                <select class="select-input" id="diet-pattern">
+                                    <option value="high-meat">High meat</option>
+                                    <option value="balanced" selected>Balanced</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="vegan">Vegan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <label class="form-label" for="food-waste">Food waste level</label>
+                                    <span class="form-value-badge"><span id="food-waste-value">20</span>%</span>
+                                </div>
+                                <input class="slider-input" id="food-waste" type="range" min="0" max="40" value="20">
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-row">
+                                    <div class="switch-label-col">
+                                        <div class="form-label">Choose local produce</div>
+                                        <div class="switch-subtext">Cut transport emissions by buying seasonal food.</div>
+                                    </div>
+                                    <label class="switch"><input id="local-switch" type="checkbox" checked><span class="slider-toggle"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="actions-section" class="content-section">
+                <div class="header-section glass-card">
+                    <h1>Action Plan</h1>
+                    <p>Pick practical habits, track commitments, and build a personal reduction plan that fits your life.</p>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="transport">Transport</button>
+                    <button class="filter-btn" data-filter="home">Home</button>
+                    <button class="filter-btn" data-filter="food">Food</button>
+                </div>
+
+                <div class="action-grid" id="habit-grid">
+                    <article class="glass-card habit-card" data-category="transport" data-impact="high">
+                        <div>
+                            <div class="habit-header">
+                                <div class="habit-tags">
+                                    <span class="badge impact-high">High impact</span>
+                                    <span class="badge diff-medium">Medium effort</span>
+                                </div>
+                            </div>
+                            <div class="habit-title">Swap two solo car trips for public transit</div>
+                            <div class="habit-desc">Move short commutes and errands to bus, train, or bike once or twice a week to cut fuel use fast.</div>
+                        </div>
+                        <div class="habit-savings-row">
+                            <div>
+                                <div class="habit-savings-label">Monthly savings</div>
+                                <div class="habit-savings-value">~42 kg</div>
+                            </div>
+                            <button class="btn-commit" data-savings="42"><span>Commit</span></button>
+                        </div>
+                    </article>
+
+                    <article class="glass-card habit-card" data-category="home" data-impact="medium">
+                        <div>
+                            <div class="habit-header">
+                                <div class="habit-tags">
+                                    <span class="badge impact-medium">Medium impact</span>
+                                    <span class="badge diff-easy">Easy</span>
+                                </div>
+                            </div>
+                            <div class="habit-title">Lower heating by 1 degree</div>
+                            <div class="habit-desc">A small thermostat adjustment can reduce heating demand without making your home uncomfortable.</div>
+                        </div>
+                        <div class="habit-savings-row">
+                            <div>
+                                <div class="habit-savings-label">Monthly savings</div>
+                                <div class="habit-savings-value">~24 kg</div>
+                            </div>
+                            <button class="btn-commit" data-savings="24"><span>Commit</span></button>
+                        </div>
+                    </article>
+
+                    <article class="glass-card habit-card" data-category="food" data-impact="high">
+                        <div>
+                            <div class="habit-header">
+                                <div class="habit-tags">
+                                    <span class="badge impact-high">High impact</span>
+                                    <span class="badge diff-easy">Easy</span>
+                                </div>
+                            </div>
+                            <div class="habit-title">Add two plant-based dinners each week</div>
+                            <div class="habit-desc">Replacing a few meat-heavy meals with legumes, grains, and vegetables makes a measurable difference.</div>
+                        </div>
+                        <div class="habit-savings-row">
+                            <div>
+                                <div class="habit-savings-label">Monthly savings</div>
+                                <div class="habit-savings-value">~31 kg</div>
+                            </div>
+                            <button class="btn-commit" data-savings="31"><span>Commit</span></button>
+                        </div>
+                    </article>
+
+                    <article class="glass-card habit-card" data-category="home" data-impact="low">
+                        <div>
+                            <div class="habit-header">
+                                <div class="habit-tags">
+                                    <span class="badge impact-low">Low impact</span>
+                                    <span class="badge diff-easy">Easy</span>
+                                </div>
+                            </div>
+                            <div class="habit-title">Replace five bulbs with LEDs</div>
+                            <div class="habit-desc">One of the simplest home upgrades, with immediate savings on electricity and replacements.</div>
+                        </div>
+                        <div class="habit-savings-row">
+                            <div>
+                                <div class="habit-savings-label">Monthly savings</div>
+                                <div class="habit-savings-value">~9 kg</div>
+                            </div>
+                            <button class="btn-commit" data-savings="9"><span>Commit</span></button>
+                        </div>
+                    </article>
+
+                    <article class="glass-card habit-card" data-category="food" data-impact="medium">
+                        <div>
+                            <div class="habit-header">
+                                <div class="habit-tags">
+                                    <span class="badge impact-medium">Medium impact</span>
+                                    <span class="badge diff-medium">Medium effort</span>
+                                </div>
+                            </div>
+                            <div class="habit-title">Plan meals to reduce food waste</div>
+                            <div class="habit-desc">Shop with a list, store food well, and use leftovers before they spoil.</div>
+                        </div>
+                        <div class="habit-savings-row">
+                            <div>
+                                <div class="habit-savings-label">Monthly savings</div>
+                                <div class="habit-savings-value">~14 kg</div>
+                            </div>
+                            <button class="btn-commit" data-savings="14"><span>Commit</span></button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="dashboard-grid" style="margin-top: 2rem;">
+                    <article class="glass-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24"><path d="M12 4v8l5 3"/></svg>
+                            Active Commitments
+                        </div>
+                        <div class="active-habits-panel" id="active-habits-panel">
+                            <div class="no-habits-msg">No commitments yet. Commit to a few habits to see your savings here.</div>
+                        </div>
+                    </article>
+                    <article class="glass-card">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+                            Reduction Summary
+                        </div>
+                        <div class="comparison-list">
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Potential monthly reduction</span><span class="comparison-val" id="reduction-total">0 kg</span></div>
+                                <div class="comparison-bar-bg"><div class="comparison-bar-fill user" id="reduction-bar"></div></div>
+                            </div>
+                            <div class="comparison-item">
+                                <div class="comparison-label-row"><span class="comparison-label">Best next step</span><span class="comparison-val" id="next-step-label">Pick a habit</span></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="quiz-section" class="content-section">
+                <div class="header-section glass-card">
+                    <h1>Eco Quiz</h1>
+                    <p>Answer a few practical questions to reinforce the behaviors that cut emissions the most.</p>
+                </div>
+
+                <div class="quiz-layout">
+                    <article class="glass-card quiz-card" id="quiz-card">
+                        <div>
+                            <div class="quiz-header">
+                                <div class="quiz-progress" id="quiz-progress">Question 1 of 3</div>
+                                <div class="quiz-score-badge">Score: <span id="quiz-score">0</span>/3</div>
+                            </div>
+                            <div class="quiz-question-container">
+                                <div class="quiz-question" id="quiz-question"></div>
+                                <div class="quiz-options" id="quiz-options"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-action-container">
+                            <button class="btn-primary" id="quiz-next-btn" type="button">Next</button>
+                        </div>
+                    </article>
+
+                    <article class="glass-card quiz-explanation-card">
+                        <div class="explanation-heading success" id="quiz-feedback-title">Why this matters</div>
+                        <div class="explanation-text" id="quiz-feedback-text">Simple decisions add up quickly when you repeat them each week.</div>
+                        <div class="quiz-results-view" id="quiz-results" hidden>
+                            <div class="quiz-score-ring" id="quiz-final-score">0</div>
+                            <div class="quiz-results-title">Personal tip recap</div>
+                            <div class="quiz-results-desc" id="quiz-final-message"></div>
+                            <button class="btn-primary" id="quiz-restart-btn" type="button">Restart Quiz</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
